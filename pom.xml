@@ -1,0 +1,77 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>org.siit.automation-local-proj</groupId>
+  <artifactId>RollerGirl_ca_auto_tests</artifactId>
+  <version>1.0-SNAPSHOT</version>
+  <name>Archetype - RollerGirl_ca_auto_tests</name>
+  <url>http://maven.apache.org</url>
+
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <maven.compiler.source>17</maven.compiler.source>
+    <maven.compiler.target>17</maven.compiler.target>
+    <selenium.version>4.26.0</selenium.version>
+      <testng.version>7.10.1</testng.version>
+      <opencsv.version>5.9</opencsv.version>
+      <mysql.version>8.0.33</mysql.version>
+      <jackson-databind.version>2.17.2</jackson-databind.version>
+      <commons-io.version>2.17.0</commons-io.version>
+      <xmlSuite>runSuites/regressionRun.xml</xmlSuite>
+  </properties>
+
+ <dependencies>
+
+  <dependency>
+    <groupId>org.seleniumhq.selenium</groupId>
+    <artifactId>selenium-java</artifactId>
+    <version>${selenium.version}</version>
+  </dependency>
+     <dependency>
+         <groupId>org.testng</groupId>
+         <artifactId>testng</artifactId>
+         <version>${testng.version}</version>
+         <scope>test</scope>
+     </dependency>
+     <dependency>
+         <groupId>com.opencsv</groupId>
+         <artifactId>opencsv</artifactId>
+         <version>${opencsv.version}</version>
+     </dependency>
+     <dependency>
+         <groupId>mysql</groupId>
+         <artifactId>mysql-connector-java</artifactId>
+         <version>${mysql.version}</version>
+     </dependency>
+     <dependency>
+         <groupId>com.fasterxml.jackson.core</groupId>
+         <artifactId>jackson-databind</artifactId>
+         <version>${jackson-databind.version}</version>
+     </dependency>
+     <dependency>
+         <groupId>commons-io</groupId>
+         <artifactId>commons-io</artifactId>
+         <version>${commons-io.version}</version>
+     </dependency>
+
+ </dependencies>
+
+    <build>
+<pluginManagement>
+    <plugins>
+        <plugin>
+            <artifactId>maven-surefire-plugin</artifactId>
+            <version>2.22.1</version>
+            <configuration>
+                <suiteXmlFiles>
+                    <suiteXmlFile>${xmlSuite}</suiteXmlFile>
+                </suiteXmlFiles>
+                <testFailureIgnore>true</testFailureIgnore>
+            </configuration>
+        </plugin>
+    </plugins>
+</pluginManagement>
+    </build>
+
+</project>
