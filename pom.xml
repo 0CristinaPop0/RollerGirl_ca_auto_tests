@@ -1,77 +1,214 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <groupId>org.siit.automation-local-proj</groupId>
-  <artifactId>RollerGirl_ca_auto_tests</artifactId>
-  <version>1.0-SNAPSHOT</version>
-  <name>Archetype - RollerGirl_ca_auto_tests</name>
-  <url>http://maven.apache.org</url>
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
 
+    <groupId>org.siit.automation-local-proj</groupId>
+    <artifactId>automation-local-proj</artifactId>
+    <version>0.0.1</version>
+    <name>Archetype - automation-local-proj</name>
+    <url>http://maven.apache.org</url>
 
-  <properties>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <maven.compiler.source>17</maven.compiler.source>
-    <maven.compiler.target>17</maven.compiler.target>
-    <selenium.version>4.26.0</selenium.version>
-      <testng.version>7.10.1</testng.version>
-      <opencsv.version>5.9</opencsv.version>
-      <mysql.version>8.0.33</mysql.version>
-      <jackson-databind.version>2.17.2</jackson-databind.version>
-      <commons-io.version>2.17.0</commons-io.version>
-      <xmlSuite>runSuites/regressionRun.xml</xmlSuite>
-  </properties>
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
+        <xmlSuite>runSuites/runSuitesWithParams.xml</xmlSuite>
+        <junitVersion>4.13.2</junitVersion>
+        <testNgVersion>7.10.2</testNgVersion>
+        <lombokVersion>1.18.34</lombokVersion>
+        <extentReportVersion>5.1.2</extentReportVersion>
+        <restAssuredVersion>5.5.0</restAssuredVersion>
+    </properties>
 
- <dependencies>
+    <dependencies>
+        <!-- JUnit Dependency -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>${junitVersion}</version>
+            <scope>test</scope>
+        </dependency>
 
-  <dependency>
-    <groupId>org.seleniumhq.selenium</groupId>
-    <artifactId>selenium-java</artifactId>
-    <version>${selenium.version}</version>
-  </dependency>
-     <dependency>
-         <groupId>org.testng</groupId>
-         <artifactId>testng</artifactId>
-         <version>${testng.version}</version>
-         <scope>test</scope>
-     </dependency>
-     <dependency>
-         <groupId>com.opencsv</groupId>
-         <artifactId>opencsv</artifactId>
-         <version>${opencsv.version}</version>
-     </dependency>
-     <dependency>
-         <groupId>mysql</groupId>
-         <artifactId>mysql-connector-java</artifactId>
-         <version>${mysql.version}</version>
-     </dependency>
-     <dependency>
-         <groupId>com.fasterxml.jackson.core</groupId>
-         <artifactId>jackson-databind</artifactId>
-         <version>${jackson-databind.version}</version>
-     </dependency>
-     <dependency>
-         <groupId>commons-io</groupId>
-         <artifactId>commons-io</artifactId>
-         <version>${commons-io.version}</version>
-     </dependency>
+        <!-- TestNG Dependency -->
+        <dependency>
+            <groupId>org.testng</groupId>
+            <artifactId>testng</artifactId>
+            <version>${testNgVersion}</version>
+            <scope>test</scope>
+        </dependency>
 
- </dependencies>
+        <!-- Commons IO Dependency -->
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>2.17.0</version>
+        </dependency>
+
+        <!-- Selenium Java Dependency -->
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-java</artifactId>
+            <version>4.24.0</version>
+        </dependency>
+
+        <!-- Lombok Dependency (provided scope) -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>${lombokVersion}</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <!-- Jackson Databind (JSON Parser) -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>2.17.2</version>
+        </dependency>
+
+        <!-- JAXB Runtime Dependency -->
+        <dependency>
+            <groupId>org.glassfish.jaxb</groupId>
+            <artifactId>jaxb-runtime</artifactId>
+            <version>4.0.5</version>
+        </dependency>
+
+        <!-- Jakarta XML Bind API -->
+        <dependency>
+            <groupId>jakarta.xml.bind</groupId>
+            <artifactId>jakarta.xml.bind-api</artifactId>
+            <version>4.0.2</version>
+        </dependency>
+
+        <!-- JAXB API (older) -->
+        <dependency>
+            <groupId>javax.xml.bind</groupId>
+            <artifactId>jaxb-api</artifactId>
+            <version>2.3.1</version>
+        </dependency>
+
+        <!-- JAXB Implementation -->
+        <dependency>
+            <groupId>com.sun.xml.bind</groupId>
+            <artifactId>jaxb-impl</artifactId>
+            <version>4.0.5</version>
+        </dependency>
+
+        <!-- Apache POI for Excel Files -->
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi</artifactId>
+            <version>5.2.3</version>
+        </dependency>
+
+        <!-- Apache Commons Compress -->
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-compress</artifactId>
+            <version>1.24.0</version>
+        </dependency>
+
+        <!-- OpenCSV Dependency -->
+        <dependency>
+            <groupId>com.opencsv</groupId>
+            <artifactId>opencsv</artifactId>
+            <version>5.9</version>
+        </dependency>
+
+        <!-- MySQL Connector for Database Interaction -->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>8.0.33</version>
+        </dependency>
+
+        <!-- Apache POI OOXML for .xlsx -->
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi-ooxml</artifactId>
+            <version>5.2.3</version>
+        </dependency>
+
+        <!-- ExtentReports for Reporting -->
+        <dependency>
+            <groupId>com.aventstack</groupId>
+            <artifactId>extentreports</artifactId>
+            <version>${extentReportVersion}</version>
+        </dependency>
+
+        <!-- Rest-Assured for REST API Testing -->
+        <dependency>
+            <groupId>io.rest-assured</groupId>
+            <artifactId>rest-assured</artifactId>
+            <version>${restAssuredVersion}</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
 
     <build>
-<pluginManagement>
-    <plugins>
-        <plugin>
-            <artifactId>maven-surefire-plugin</artifactId>
-            <version>2.22.1</version>
-            <configuration>
-                <suiteXmlFiles>
-                    <suiteXmlFile>${xmlSuite}</suiteXmlFile>
-                </suiteXmlFiles>
-                <testFailureIgnore>true</testFailureIgnore>
-            </configuration>
-        </plugin>
-    </plugins>
-</pluginManagement>
+        <pluginManagement>
+            <plugins>
+                <!-- Maven Clean Plugin -->
+                <plugin>
+                    <artifactId>maven-clean-plugin</artifactId>
+                    <version>3.1.0</version>
+                </plugin>
+
+                <!-- Maven Resources Plugin -->
+                <plugin>
+                    <artifactId>maven-resources-plugin</artifactId>
+                    <version>3.0.2</version>
+                </plugin>
+
+                <!-- Maven Compiler Plugin -->
+                <plugin>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>3.8.0</version>
+                </plugin>
+
+                <!-- Maven Surefire Plugin for Tests -->
+                <plugin>
+                    <artifactId>maven-surefire-plugin</artifactId>
+                    <version>2.22.1</version>
+                    <configuration>
+                        <suiteXmlFiles>
+                            <suiteXmlFile>${xmlSuite}</suiteXmlFile>
+                        </suiteXmlFiles>
+                        <testFailureIgnore>true</testFailureIgnore>
+                    </configuration>
+                </plugin>
+
+                <!-- Maven Jar Plugin -->
+                <plugin>
+                    <artifactId>maven-jar-plugin</artifactId>
+                    <version>3.0.2</version>
+                </plugin>
+
+                <!-- Maven Install Plugin -->
+                <plugin>
+                    <artifactId>maven-install-plugin</artifactId>
+                    <version>2.5.2</version>
+                </plugin>
+
+                <!-- Maven Deploy Plugin -->
+                <plugin>
+                    <artifactId>maven-deploy-plugin</artifactId>
+                    <version>2.8.2</version>
+                </plugin>
+
+                <!-- Maven Site Plugin -->
+                <plugin>
+                    <artifactId>maven-site-plugin</artifactId>
+                    <version>3.7.1</version>
+                </plugin>
+
+                <!-- Maven Project Info Reports Plugin -->
+                <plugin>
+                    <artifactId>maven-project-info-reports-plugin</artifactId>
+                    <version>3.0.0</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
     </build>
 
 </project>

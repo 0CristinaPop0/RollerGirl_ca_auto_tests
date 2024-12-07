@@ -20,15 +20,30 @@ import java.util.Map;
 import static utils.ConstantUtils.SCREENSHOTS_PATH;
 
 public class BrowserUtils {
+
+    // Method to get the WebDriver with browser parameter only
     public static WebDriver getDriver(String browser) {
-        return getDriver(browser, "local");
+        return getDriver(browser, "local"); // Default environment is "local"
     }
 
-
+    // Method to get WebDriver with both browser and environment parameters
     public static WebDriver getDriver(String browser, String environment) {
-        switch (browser.toLowerCase()) {
+        // Ensure browser is not null or empty, default to "chrome"
+        if (browser == null || browser.trim().isEmpty()) {
+            browser = "chrome"; // Default to Chrome if no valid browser is provided
+        }
 
-            case "firefox" : {
+        // Ensure environment is not null or empty, default to "local"
+        if (environment == null || environment.trim().isEmpty()) {
+            environment = "local"; // Default to "local" if no valid environment is provided
+        }
+
+        // Log the browser and environment being used
+        System.out.println("Initializing WebDriver with browser: " + browser + " and environment: " + environment);
+
+        // Switch based on the browser type and initialize the appropriate WebDriver
+        switch (browser.toLowerCase()) {
+            case "firefox": {
                 FirefoxProfile profile = new FirefoxProfile();
                 profile.setPreference("browser.download.folderList", 1);
                 profile.setPreference("browser.download.manager.showWhenStarting", false);
@@ -39,14 +54,12 @@ public class BrowserUtils {
                 profile.setPreference("browser.download.manager.closeWhenDone", true);
                 profile.setPreference("browser.download.manager.showAlertOnComplete", true);
                 profile.setPreference("browser.download.manager.useWindow", false);
-                // You will need to find the content-type of your app and set it here.
-                profile.setPreference("browser.helperApps.neverAsk.saveToDisk",
-                        "application/octet-stream");
+                profile.setPreference("browser.helperApps.neverAsk.saveToDisk", "application/octet-stream");
 
                 FirefoxOptions capabilities = new FirefoxOptions();
                 capabilities.setCapability("browserName", "Firefox");
                 capabilities.setCapability("browserVersion", "95.0");
-                HashMap<String, Object> customOptions = new HashMap<String, Object>();
+                HashMap<String, Object> customOptions = new HashMap<>();
                 customOptions.put("os", "OS X");
                 customOptions.put("osVersion", "Monterey");
                 customOptions.put("buildName", "Selenium Java Firefox Profile");
@@ -55,36 +68,45 @@ public class BrowserUtils {
                 capabilities.setProfile(profile);
                 return new FirefoxDriver(capabilities);
             }
-            case "chrome" : {
+            case "chrome": {
                 ChromeOptions options = new ChromeOptions();
                 options.addArguments("--start-maximized");
                 if (environment.equalsIgnoreCase("headless")) {
                     options.addArguments("--headless");
                 }
 
-                Map<String, Object> prefs = new HashMap<String, Object>();
+                Map<String, Object> prefs = new HashMap<>();
                 prefs.put("download.default_directory", "/src/test/resources/downloads");
                 options.setExperimentalOption("prefs", prefs);
 
                 return new ChromeDriver(options);
             }
-            case "edge" : {
+            case "edge": {
                 return new EdgeDriver();
             }
-            case "safari" : {
+            case "safari": {
                 return new SafariDriver();
             }
-            default : {
+            default: {
+                // If no valid browser is passed, default to Chrome
+                System.out.println("Browser not recognized. Defaulting to Chrome.");
                 return new ChromeDriver();
             }
         }
     }
 
+    // Method to capture a screenshot
     public static void generateScreenShots(String filename, WebDriver driver, boolean alertOn) throws IOException {
-        if (alertOn)
-            driver.switchTo().alert().accept();
-        File screnshotFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+        if (alertOn) {
+            driver.switchTo().alert().accept(); // Accept alert if it's present
+        }
+
+        // Take screenshot
+        File screenshotFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
         File saveFile = new File(SCREENSHOTS_PATH + "/" + filename + ".png");
-        FileUtils.copyFile(screnshotFile, saveFile);
+
+        // Save the screenshot to the desired location
+        FileUtils.copyFile(screenshotFile, saveFile);
+        System.out.println("Screenshot saved at: " + saveFile.getAbsolutePath());
     }
 }

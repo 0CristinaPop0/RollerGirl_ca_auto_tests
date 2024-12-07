@@ -1,16 +1,16 @@
 [
   {
-      "account": {
-        "username": "test",
-        "password": "test"
-      },
-      "loginErr": "Invalid username or password!"
-    },
-  {
-    "account": {
-      "username": "dingo",
-      "password": "dingopassword"
-    },
-    "loginErr": ""
+    "firstName": "Jane",
+    "lastName": "Doe",
+    "email": "maildetestari@gmail.com",
+    "street": "Unit 2 Oxford Street",
+    "city": "London",
+    "postalCode": "W1D 1BS",
+    "state": "UK",
+    "country": "United Kingdom",
+    "telephone": "07912345789",
+    "password": "Ana1234$",
+    "confirmPassword": "Ana1234$",
+    "loginErr": "Your E-Mail Address already exists in our records - please log in with the e-mail address or create an account with a different address."
   }
 ]
